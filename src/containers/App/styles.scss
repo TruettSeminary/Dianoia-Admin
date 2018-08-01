@@ -1,0 +1,27 @@
+.appContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.toolbar {
+    flex: 0 0 auto;
+}
+
+.content {
+    padding-top: 1rem; 
+    flex: 1 1 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+.notifications {
+    width: 100%;
+    position : absolute;
+    z-index : 1500;
+    bottom : 2rem;
+}
