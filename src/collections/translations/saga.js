@@ -2,6 +2,9 @@ import { fork, put, takeLatest } from 'redux-saga/effects';
 
 import Dianoia from 'utils/API/index'; 
 
+// App "Connections" 
+import { replace } from 'connected-react-router'; 
+
 import {
     GET_ALL_TRANSLATIONS, 
     CREATE_TRANSLATION, 
@@ -32,6 +35,7 @@ export function* createTranslationSaga(action) {
     try {
         const translation = yield Dianoia.adminEngine.createTranslation(action.translation); 
         yield put(createTranslationSucceeded(translation)); 
+        yield put(replace(`translations/edit/${action.translation._id}`)); 
     } catch(error) {
         console.error(error); 
     }

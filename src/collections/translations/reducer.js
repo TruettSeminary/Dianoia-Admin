@@ -18,15 +18,18 @@ function getTranslationMap(translations) {
 }
 
 function translationsReducer(state = initialState, action) {
+    let translations; 
+
     switch(action.type) {
         case REFRESH_ALL_TRANSLATIONS: 
             return fromJS(getTranslationMap(action.translations)); 
         case RESET_TRANSLATIONS: 
             return initialState;
         case CREATE_TRANSLATION_SUCCEEDED: 
-            return state; // TODO: 
         case UPDATE_TRANSLATION_SUCCEEDED: 
-            return state; // TODO:
+            translations = state.toJS(); 
+            translations[action.translation._id] = action.translation; 
+            return fromJS(translations); 
         case DELETE_TRANSLATION_SUCCEEDED: 
             return state; // TODO:
         default: 

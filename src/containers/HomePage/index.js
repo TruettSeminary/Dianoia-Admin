@@ -10,7 +10,6 @@ import { homePageSelector } from './selectors'
 import GridContainer from 'md-components/Grid/GridContainer'; 
 import GridItem from 'md-components/Grid/GridItem'; 
 import Button from "md-components/CustomButtons/Button.jsx";
-import Add from '@material-ui/icons/Add'; 
 
 import HomeCard from './HomeCard'; 
 
@@ -27,7 +26,7 @@ class HomePage extends React.Component {
                 key={translation._id}>
                 <HomeCard 
                     translation={translation}
-                    studyDeck={() => {
+                    editTranslation={() => {
                         this.props.pushPage(`/translation/edit/${translation._id}`)
                     }} 
                 />
@@ -38,16 +37,14 @@ class HomePage extends React.Component {
     render() {
         return (
             <div className="homePageContainer">
-                <h1>Create New Translation: 
-                    <Button justIcon round color="primary"
-                        onClick={() => {
-                            this.props.pushPage('/translation/create'); 
-                        }}
-                    >
-                        <Add/>
-                    </Button>
-                </h1>
-                <h1>Existing Translations</h1>
+                <Button color="primary"
+                    onClick={() => {
+                        this.props.pushPage('/translation/create'); 
+                    }}
+                >
+                    <h3>Create New Translation </h3>
+                </Button>
+                <h1>Existing Translations:</h1>
                 <GridContainer>
                     {this.generateTranslations()}
                 </GridContainer>

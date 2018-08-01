@@ -14,7 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 // TODO: determine which level of merging needs to take place
 const persistConfig = {
-  key: 'dianoia-admin', 
+  key: process.env.REACT_APP_PERSIST_KEY, 
   storage: localforage,
   blacklist: ['router', 'notificationProvider'],
   transforms: [immutableTransform({
