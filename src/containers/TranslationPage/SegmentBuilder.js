@@ -10,12 +10,9 @@ import { segmentBuilderSelector } from './selectors';
 import GridContainer from 'md-components/Grid/GridContainer'; 
 import GridItem from 'md-components/Grid/GridItem'; 
 import Button from "md-components/CustomButtons/Button.jsx";
-import CustomInput from "md-components/CustomInput/CustomInput.jsx";
 
 import Chip from 'material-ui/Chip/Chip'; 
 import Tooltip from 'material-ui/Tooltip/Tooltip';
-import Paper from 'material-ui/Paper/Paper';
-import Checkbox from 'material-ui/Checkbox/Checkbox'; 
 
 import {
     AddCircle,
