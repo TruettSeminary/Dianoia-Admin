@@ -1,3 +1,4 @@
+// TODO: remove use of "ref" on segmentBuilder
 import React from 'react'; 
 import { compose } from 'redux'; 
 import { connect } from 'react-redux'; 
@@ -9,6 +10,8 @@ import {
     updateTranslation,
     deleteTranslation
 } from 'collections/translations/actions'; 
+
+import SegmentBuilder from './SegmentBuilder'; 
 
 import GridContainer from 'md-components/Grid/GridContainer'; 
 import GridItem from 'md-components/Grid/GridItem'; 
@@ -24,9 +27,7 @@ import {
     RemoveCircle
 } from '@material-ui/icons'
 
-
 import './styles.css'; 
-
 
 class Translation {
     constructor({ _id, sentence, scripture, name, instructions, decks, metadata}) {
@@ -36,7 +37,7 @@ class Translation {
         this.name = name || ''; 
         this.instructions = instructions || ''; 
         this.decks = decks ? new Set(decks) : new Set();
-        this.metadata = metadata || {}; 
+        this.metadata = (metadata === undefined ? { segments: {} } : metadata); 
     }
 }
 
@@ -45,6 +46,8 @@ class TranslationsPage extends React.Component {
 
     constructor(props) {
         super(props); 
+
+        this.segmentBuilderRef = React.createRef(); 
 
         const translation = this.props.translation_id ? 
             new Translation(this.props.translations[this.props.translation_id]) : 
@@ -62,13 +65,16 @@ class TranslationsPage extends React.Component {
     }
 
     saveTranslation() {
+        const metadata = this.state.metadata === undefined ? {} : this.state.metadata; 
+        metadata.segments = this.segmentBuilderRef.current.getWrappedInstance().getSegments()
+
         const translation = {
             sentence: this.state.sentence,
             name: this.state.name, 
             instructions: this.state.instructions, 
             scripture: this.state.scripture, 
             decks: Array.from(this.state.decks), 
-            metadata: this.state.metadata
+            metadata
         }; 
 
         if(this.state._id) {
@@ -135,11 +141,6 @@ class TranslationsPage extends React.Component {
         );
     }
 
-    // merge segment
-    mergeMetaSegments(segments) {
-
-    }
-
     render() {
         const translationDecks = []; 
         const otherDecks = []; 
@@ -185,14 +186,13 @@ class TranslationsPage extends React.Component {
                         </div>
                     </GridItem>
                     <GridItem>
-                        <GridContainer>
-                            <GridItem sm={9}>
-
-                            </GridItem>
-                            <GridItem sm={3}>
-                                
-                            </GridItem>
-                        </GridContainer>
+                        <div>
+                            <SegmentBuilder 
+                                ref={this.segmentBuilderRef}
+                                sentence={this.state.sentence}
+                                segments={this.state.metadata.segments}
+                                />
+                        </div>
                     </GridItem>
                     <GridItem>
                         <Button color="success" onClick={() => this.saveTranslation()}>Save</Button>

@@ -1,3 +1,5 @@
+@import 'assets/scss/core/_variables.scss';
+
 .translationPageContainer {
     padding: 2rem 2rem 0 2rem;
 
@@ -5,4 +7,41 @@
 
 .input {
     color: black; 
+}
+
+
+.segmentBuilderContainer {
+
+    .segmentsContainer {
+        max-height: 400px;
+        overflow: scroll;
+
+        .segmentRow {
+            margin-bottom: 10px; 
+            min-height: 100px;
+    
+            .segmentPaper {
+                padding: 1rem;
+
+                .segmentCards {
+                    max-height: 85px; 
+                    overflow: scroll; 
+                }
+            }
+        }
+
+    }
+
+    .availableCards {
+        max-height: 400px;
+        overflow: scroll; 
+
+        .availableCard {
+            margin-bottom: 10px; 
+            .availableChip {
+                background-color: $brand-primary;
+                color: white;
+            }
+        }
+    }
 }

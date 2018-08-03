@@ -35,7 +35,7 @@ export function* createTranslationSaga(action) {
     try {
         const translation = yield Dianoia.adminEngine.createTranslation(action.translation); 
         yield put(createTranslationSucceeded(translation)); 
-        yield put(replace(`translations/edit/${action.translation._id}`)); 
+        yield put(replace(`/translation/edit/${translation._id}`)); 
     } catch(error) {
         console.error(error); 
     }

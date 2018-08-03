@@ -23,6 +23,16 @@ const translationPageSelector = () => createSelector(
     }
 ); 
 
+const segmentBuilderSelector = () => createSelector(
+    [allCardsSelector], 
+    (cards) => {
+        return { 
+            cards
+        }
+    }
+)
+
 export {
-    translationPageSelector
+    translationPageSelector,
+    segmentBuilderSelector
 }
