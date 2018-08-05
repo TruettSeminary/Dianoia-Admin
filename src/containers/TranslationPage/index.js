@@ -67,13 +67,18 @@ class TranslationsPage extends React.Component {
     saveTranslation() {
         const metadata = this.state.metadata === undefined ? {} : this.state.metadata; 
         metadata.segments = this.segmentBuilderRef.current.getWrappedInstance().getSegments()
+        const cards = Object.values(metadata.segments).reduce((cards, segment) => {
+            segment.cards.forEach(card => cards.push(card._id)); 
+            return cards; 
+        }, []); 
 
         const translation = {
             sentence: this.state.sentence,
             name: this.state.name, 
             instructions: this.state.instructions, 
             scripture: this.state.scripture, 
-            decks: Array.from(this.state.decks), 
+            decks: Array.from(this.state.decks),
+            cards, 
             metadata
         }; 
 

@@ -151,7 +151,7 @@ class SegmentBuilder extends React.Component {
         const segments = this.state.segments; 
         segments[segment_id].cards.set(card._id, {
             ...card,
-            form: 'word'
+            form: '--'
         }); 
         this.setState({segments}); 
     }
