@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/icons": "1.0.0-beta.43",
     "connected-react-router": "4.3.0",
-    "dianoia-js": "0.1.0",
+    "dianoia-js": "0.1.1",
     "history": "4.7.2",
     "immutable": "3.8.2",
     "localforage": "1.7.1",
